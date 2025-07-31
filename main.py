@@ -5,6 +5,10 @@ Main entry point for the Telegram Translation Bot
 import logging
 import signal
 import sys
+
+from keep_alive import keep_alive
+keep_alive()
+
 from translator_bot import TranslatorBot
 from config import BOT_TOKEN
 
