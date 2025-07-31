@@ -62,9 +62,10 @@ class TranslatorBot:
             context (ContextTypes.DEFAULT_TYPE): Bot context
         """
         try:
-            # Get the message text
+            # Get the message text and user info
             text = update.message.text
             user_id = update.effective_user.id
+            user_name = update.effective_user.first_name or "Usuário"
             
             if not text:
                 logger.warning(f"Empty message received from user {user_id}")
@@ -79,10 +80,10 @@ class TranslatorBot:
                 await update.message.reply_text(DETECTION_ERROR_MSG)
                 return
             
-            # Check if language is supported
+            # Check if language is supported - if not, respond with "?"
             if not is_supported_language(detected_lang):
-                logger.info(f"Unsupported language detected: {detected_lang}")
-                await update.message.reply_text(UNSUPPORTED_LANGUAGE_MSG)
+                logger.info(f"Unsupported language detected: {detected_lang}, responding with '?'")
+                await update.message.reply_text("?")
                 return
             
             # Get target language
@@ -95,8 +96,8 @@ class TranslatorBot:
                 await update.message.reply_text(TRANSLATION_ERROR_MSG)
                 return
             
-            # Format and send the response
-            response = format_translation_response(translated_text, target_lang)
+            # Format and send the response with user's name
+            response = format_translation_response(translated_text, target_lang, user_name)
             await update.message.reply_text(response)
             
             logger.info(f"Translation completed for user {user_id}")

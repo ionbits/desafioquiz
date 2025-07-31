@@ -4,7 +4,7 @@ modules = ["python-3.11"]
 channel = "stable-25_05"
 
 [workflows]
-runButton = "Project"
+runButton = "Telegram Bot"
 
 [[workflows.workflow]]
 name = "Project"
@@ -15,14 +15,6 @@ author = "agent"
 task = "workflow.run"
 args = "Telegram Bot"
 
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "telegram_bot_test"
-
-[[workflows.workflow.tasks]]
-task = "workflow.run"
-args = "Simple Telegram Bot"
-
 [[workflows.workflow]]
 name = "Telegram Bot"
 author = "agent"
@@ -31,18 +23,5 @@ author = "agent"
 task = "shell.exec"
 args = "pip install python-telegram-bot langdetect deep-translator && python main.py"
 
-[[workflows.workflow]]
-name = "telegram_bot_test"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "pip install python-telegram-bot langdetect deep-translator && python main.py"
-
-[[workflows.workflow]]
-name = "Simple Telegram Bot"
-author = "agent"
-
-[[workflows.workflow.tasks]]
-task = "shell.exec"
-args = "python bot_simple.py"
+[agent]
+expertMode = true

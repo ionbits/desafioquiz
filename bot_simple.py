@@ -3,7 +3,8 @@ from telegram.ext import ApplicationBuilder, MessageHandler, ContextTypes, filte
 from deep_translator import GoogleTranslator
 from langdetect import detect
 
-BOT_TOKEN = '8349056540:AAHZTPt7X9X5bJLuOrD6ZYx6EyXAwpOPgs8'
+import os
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 async def translate_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # Verificar se a mensagem e o texto existem

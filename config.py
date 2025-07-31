@@ -4,7 +4,7 @@ Configuration file for the Telegram Translation Bot
 import os
 
 # Bot configuration
-BOT_TOKEN = os.getenv("BOT_TOKEN", "8349056540:AAHZTPt7X9X5bJLuOrD6ZYx6EyXAwpOPgs8")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 # Language codes
 PORTUGUESE = 'pt'

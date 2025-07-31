@@ -6,18 +6,38 @@ import logging
 import signal
 import sys
 
-from keep_alive import keep_alive
-keep_alive()
-
-from translator_bot import TranslatorBot
-from config import BOT_TOKEN
-
 # Configure logging
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
 logger = logging.getLogger(__name__)
+
+try:
+    from flask import Flask
+    from threading import Thread
+
+    app = Flask('')
+
+    @app.route('/')
+    def home():
+        return "Bot está online!"
+
+    def run():
+        print("Servidor Flask iniciado na porta 8080")
+        app.run(host='0.0.0.0', port=8080)
+
+    t = Thread(target=run)
+    t.start()
+
+    logger.info("Keep-alive service started successfully")
+except ImportError:
+    logger.info("Keep-alive service disabled (Flask not available - this is optional for bot functionality)")
+except Exception as e:
+    logger.info(f"Keep-alive service disabled ({e})")
+
+from translator_bot import TranslatorBot
+from config import BOT_TOKEN
 
 # Global bot instance
 bot_instance = None

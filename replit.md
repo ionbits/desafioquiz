@@ -6,7 +6,10 @@ This is a Telegram bot that automatically translates messages between Portuguese
 
 ## User Preferences
 
-Preferred communication style: Simple, everyday language.
+- Preferred communication style: Simple, everyday language
+- Bot behavior: Responds with "?" for unsupported languages
+- Response format: Personalized messages using user's first name
+- Language detection: Enhanced recognition for simple Portuguese greetings
 
 ## Recent Changes (July 31, 2025)
 
@@ -15,6 +18,14 @@ Preferred communication style: Simple, everyday language.
 - ✅ Added robust error handling for message processing
 - ✅ Customized response format: "[Name] disse:" for PT→EN, "[Name] said:" for EN→PT
 - ✅ Enhanced Portuguese and English word detection for better accuracy
+- ✅ **Migration to Replit**: Removed hardcoded bot tokens for security
+- ✅ **Security Enhancement**: Bot token now stored as environment variable
+- ✅ **Dependency Management**: Fixed package installation and imports
+- ✅ **Keep-alive Service**: Flask-based keep-alive service now properly configured and running
+- ✅ **Simple Response Mode**: Bot responds with "?" for unsupported languages
+- ✅ **Enhanced Language Detection**: Improved recognition of simple Portuguese words like "oi" and "olá" with keyword-based detection
+- ✅ **Fixed English Detection**: Resolved issue where English text wasn't being translated to Portuguese properly
+- ✅ **Personalized Translation Messages**: Now uses user's first name in responses ("[Name] said:" for PT→EN, "[Name] disse:" for EN→PT)
 
 ## System Architecture
 
@@ -37,8 +48,8 @@ The architecture is designed for simplicity and maintainability, with each modul
 
 ### Translation Engine (utils.py)
 - **Purpose**: Provides language detection and translation capabilities
-- **Technology**: `langdetect` for detection, `deep-translator` with Google Translate
-- **Key Features**: Automatic language detection, bidirectional translation
+- **Technology**: `langdetect` for detection with keyword enhancement, `deep-translator` with Google Translate
+- **Key Features**: Enhanced language detection with keyword matching, bidirectional translation, silent mode for unsupported languages
 - **Design Decision**: Separated from bot logic to allow for easy testing and potential replacement of translation services
 
 ### Configuration Management (config.py)
